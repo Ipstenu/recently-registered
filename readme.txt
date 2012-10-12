@@ -4,7 +4,7 @@ Contributors: Ipstenu
 Requires at least: 3.1
 Tested up to: 3.5
 Stable Tag: 2.3
-Donate link: https://www.wepay.com/donations/halfelf-wp
+Donate link: https://www.wepay.com/donations/halfelf-wp/
 
 Add a sortable column to the users list on Single Site WordPress to show registration date.
 
