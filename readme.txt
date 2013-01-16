@@ -3,7 +3,7 @@ Tags: users, recent, new, buddypress
 Contributors: Ipstenu
 Requires at least: 3.1
 Tested up to: 3.5
-Stable Tag: 2.3
+Stable Tag: 3.0
 Donate link: https://www.wepay.com/donations/halfelf-wp/
 
 Add a sortable column to the users list on Single Site WordPress to show registration date.
@@ -16,6 +16,11 @@ This plugin adds a new, sortable, column to the users lists, which shows the dat
 * [Plugin Site](http://halfelf.org/plugins/recently-registered/)
 
 == Changelog ==
+
+= 3.0 =
+* 16 Jan, 2013 by Ipstenu
+* Moving everything to it's own class.
+* Changing priorities to stop other plugins from stomping on me.
 
 = 2.3 =
 * 17 June, 2012 by Ipstenu

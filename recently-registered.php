@@ -3,7 +3,7 @@
 Plugin Name: Recently Registered
 Plugin URI: http://halelf.org/plugins/recently-registered/
 Description: Add a sortable column to the users list on Single Site WordPress to show registration date.
-Version: 2.3
+Version: 3.0
 Author: Mika Epstein
 Author URI: http://www.ipstenu.org/
 
@@ -32,14 +32,13 @@ $exit_msg_ver = 'Sorry, this plugin is not supported on pre-3.1 WordPress instal
 if( is_multisite() ) { exit($exit_msg_ms); }
 if (version_compare($wp_version,"3.1","<")) { exit($exit_msg_ver); }
 
-// This makes the column and makes it sortable
+class RRHE {
 	// Register the column - Registered
 	function registerdate($columns) {
 		$columns['registerdate'] = __('Registered', 'registerdate');
 		return $columns;
 	}
-	add_filter('manage_users_columns', 'registerdate');
-
+	
 	// Display the column content
 	function registerdate_columns( $value, $column_name, $user_id ) {
         if ( 'registerdate' != $column_name )
@@ -49,7 +48,6 @@ if (version_compare($wp_version,"3.1","<")) { exit($exit_msg_ver); }
         $registerdate = date_i18n(get_option('date_format') ,strtotime($registerdate) );
         return $registerdate;
 	}
-	add_action('manage_users_custom_column',  'registerdate_columns', 10, 3);
 
 	function registerdate_column_sortable($columns) {
           $custom = array(
@@ -58,7 +56,6 @@ if (version_compare($wp_version,"3.1","<")) { exit($exit_msg_ver); }
           );
       return wp_parse_args($custom, $columns);
 	}
-	add_filter( 'manage_users_sortable_columns', 'registerdate_column_sortable' );
 
 	function registerdate_column_orderby( $vars ) {
         if ( isset( $vars['orderby'] ) && 'registerdate' == $vars['orderby'] ) {
@@ -69,8 +66,15 @@ if (version_compare($wp_version,"3.1","<")) { exit($exit_msg_ver); }
         }
         return $vars;
 	}
-	add_filter( 'request', 'registerdate_column_orderby' );
-	
+
+}
+
+// Actions
+	add_filter( 'manage_users_columns', array('RRHE','registerdate'));
+	add_action( 'manage_users_custom_column',  array('RRHE','registerdate_columns'), 10, 3);
+	add_filter( 'manage_users_sortable_columns', array('RRHE','registerdate_column_sortable') );
+	add_filter( 'request', array('RRHE','registerdate_column_orderby') );
+
 // donate link on manage plugin page
 	add_filter('plugin_row_meta', 'registerdate_donate_link', 10, 2);
 	function registerdate_donate_link($links, $file) {
