@@ -77,15 +77,20 @@ No special instructions.
 
 == Frequently Asked Questions ==
 
+= Why is the field blank? =
+
+Because some other plugins are _doing_it_wrong(). When they created their column, they forgot to have the filter return the previous content, if it's not their column, so it's removing it. Since my plugin's doing it right, I gave it a higher priority to stop that from happening in most cases.
+
 = Will this work on older versions of WordPress? =
 
 Not anymore.  This ONLY works on WordPress 3.1 and up.
 
 = Does this work on MultiSite? =
 
-Yes, but do *not* use this plugin.  This code just activates something that's already there on WordPress MultiSite.  You don't need it!
+No, and you don't need it! This is built in to Multisite.
 
 = Does this work on BuddyPress? =
+
 Yes!
 
 = Why doesn't this check for Stop Forum Spam anymore? =
