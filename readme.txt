@@ -3,7 +3,7 @@ Tags: users, recent, new, buddypress
 Contributors: Ipstenu
 Requires at least: 3.1
 Tested up to: 3.7
-Stable Tag: 3.1
+Stable Tag: 3.2.1
 Donate link: https://www.wepay.com/donations/halfelf-wp/
 
 Add a sortable column to the users list on Single Site WordPress to show registration date.
@@ -17,9 +17,17 @@ This plugin adds a new, sortable, column to the users lists, which shows the dat
 
 == Changelog ==
 
-= 3.1 =
+= 3.2.1 =
+* 06 Nov, 2013 by Ipstenu
+* Fixed regression introduced by get_date_from_gmt() being used wrong. (thanks <a href="http://wordpress.org/support/topic/every-user-registered-on-1-january-1970-0000">mayuxi</a>)
+
+= 3.2 =
 * 21 Oct, 2013 by Ipstenu
 * Fixed localization and date_i18n()'ing (thanks, ssjaimia)
+
+= 3.1 =
+* 17 Jan, 2013 by Ipstenu
+* Added in time to display (per request of <a href="http://wordpress.org/support/topic/show-timestamp">razorfrog</a>) 
 
 = 3.0 =
 * 16 Jan, 2013 by Ipstenu
