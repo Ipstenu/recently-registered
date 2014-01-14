@@ -4,7 +4,7 @@ Contributors: Ipstenu
 Requires at least: 3.7
 Tested up to: 3.8
 Stable Tag: 3.2.1
-Donate link: https://www.wepay.com/donations/halfelf-wp/
+Donate link: https://store.halfelf.org/donate//
 
 Add a sortable column to the users list on Single Site WordPress to show registration date.
 
@@ -12,7 +12,7 @@ Add a sortable column to the users list on Single Site WordPress to show registr
 
 This plugin adds a new, sortable, column to the users lists, which shows the date they registered.  This works just like it does on WordPress MultiSite, only for Single Site!
 
-* [Donate](https://www.wepay.com/donations/halfelf-wp)
+* [Donate](https://store.halfelf.org/donate/)
 * [Plugin Site](http://halfelf.org/plugins/recently-registered/)
 
 == Changelog ==
