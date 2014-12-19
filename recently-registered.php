@@ -3,7 +3,7 @@
 Plugin Name: Recently Registered
 Plugin URI: http://halelf.org/plugins/recently-registered/
 Description: Add a sortable column to the users list on Single Site WordPress to show registration date.
-Version: 3.2.1
+Version: 3.3
 Author: Mika Epstein
 Author URI: http://www.ipstenu.org/
 
@@ -34,7 +34,7 @@ if (version_compare($wp_version,"3.1","<")) { exit($exit_msg_ver); }
 
 class RRHE {
 	// Register the column - Registered
-	function registerdate($columns) {
+	public static function registerdate($columns) {
 		$columns['registerdate'] = __('Registered', 'registerdate');
 		return $columns;
 	}
@@ -58,7 +58,7 @@ class RRHE {
       return wp_parse_args($custom, $columns);
 	}
 
-	function registerdate_column_orderby( $vars ) {
+	public static function registerdate_column_orderby( $vars ) {
         if ( isset( $vars['orderby'] ) && 'registerdate' == $vars['orderby'] ) {
                 $vars = array_merge( $vars, array(
                         'meta_key' => 'registerdate',
