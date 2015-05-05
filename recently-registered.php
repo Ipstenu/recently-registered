@@ -27,47 +27,47 @@ Copyright 2009-11 Mika Epstein (email: ipstenu@ipstenu.org)
 */
 
 global $wp_version;
-$exit_msg_ms  = 'Sorry, this plugin is not supported (and will not work) on WordPress MultiSite.';
 $exit_msg_ver = 'Sorry, this plugin is not supported on pre-3.1 WordPress installs.';
-if( is_multisite() ) { exit($exit_msg_ms); }
 if (version_compare($wp_version,"3.1","<")) { exit($exit_msg_ver); }
 
-class RRHE {
-	// Register the column - Registered
-	public static function registerdate($columns) {
-		$columns['registerdate'] = __('Registered', 'registerdate');
-		return $columns;
-	}
+if( ! class_exists( 'RRHE' ) ){
+	class RRHE {
+		// Register the column - Registered
+		public static function registerdate($columns) {
+			$columns['registerdate'] = __('Registered', 'registerdate');
+			return $columns;
+		}
+		
+		// Display the column content
+		public static function registerdate_columns( $value, $column_name, $user_id ) {
+		if ( 'registerdate' != $column_name )
+		   return $value;
+		$user = get_userdata( $user_id );
+		$registered = strtotime(get_date_from_gmt($user->user_registered)); 
+	 
+		$registerdate = '<span>'. date_i18n(get_option('date_format'), $registered ) .'<br />'. date_i18n(get_option('time_format'), $registered ) .'</span>' ; 
+		return $registerdate;
+		}
 	
-	// Display the column content
-	public static function registerdate_columns( $value, $column_name, $user_id ) {
-        if ( 'registerdate' != $column_name )
-           return $value;
-        $user = get_userdata( $user_id );
-        $registered = strtotime(get_date_from_gmt($user->user_registered)); 
- 
-        $registerdate = '<span>'. date_i18n(get_option('date_format'), $registered ) .'<br />'. date_i18n(get_option('time_format'), $registered ) .'</span>' ; 
-        return $registerdate;
+		public static function registerdate_column_sortable($columns) {
+		  $custom = array(
+			  // meta column id => sortby value used in query
+		  'registerdate'    => 'registered',
+		  );
+	      return wp_parse_args($custom, $columns);
+		}
+	
+		public static function registerdate_column_orderby( $vars ) {
+		if ( isset( $vars['orderby'] ) && 'registerdate' == $vars['orderby'] ) {
+			$vars = array_merge( $vars, array(
+				'meta_key' => 'registerdate',
+				'orderby' => 'meta_value'
+			) );
+		}
+		return $vars;
+		}
+	
 	}
-
-	public static function registerdate_column_sortable($columns) {
-          $custom = array(
-		  // meta column id => sortby value used in query
-          'registerdate'    => 'registered',
-          );
-      return wp_parse_args($custom, $columns);
-	}
-
-	public static function registerdate_column_orderby( $vars ) {
-        if ( isset( $vars['orderby'] ) && 'registerdate' == $vars['orderby'] ) {
-                $vars = array_merge( $vars, array(
-                        'meta_key' => 'registerdate',
-                        'orderby' => 'meta_value'
-                ) );
-        }
-        return $vars;
-	}
-
 }
 
 // Actions
