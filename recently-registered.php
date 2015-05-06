@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Recently Registered
-Plugin URI: http://halelf.org/plugins/recently-registered/
+Plugin URI: http://halfelf.org/plugins/recently-registered/
 Description: Add a sortable column to the users list to show registration date.
-Version: 3.4
+Version: 3.4.1
 Author: Mika Epstein
 Author URI: http://www.ipstenu.org/
 Text Domain: recently-registered
@@ -158,6 +158,4 @@ class RRHE {
 
 }
 
-if( ! class_exists( 'RRHE' ) ){
-	new RRHE();
-}
+new RRHE();

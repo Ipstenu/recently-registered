@@ -3,7 +3,7 @@ Tags: users, recent, new, buddypress
 Contributors: Ipstenu
 Requires at least: 3.7
 Tested up to: 4.2
-Stable Tag: 3.4
+Stable Tag: 3.4.1
 Donate link: https://store.halfelf.org/donate/
 
 Add a sortable column to the users list to show registration date.
@@ -18,6 +18,10 @@ Primarily useful for single site (which doesn't show this at all), on Multisite 
 * [Plugin Site](http://halfelf.org/plugins/recently-registered/)
 
 == Changelog ==
+
+= 3.4.1 =
+* 05 May 2015, by Ipstenu
+* Typo preventing activation on singlesite *SIGH*
 
 = 3.4 =
 * 05 May 2015, by Ipstenu
