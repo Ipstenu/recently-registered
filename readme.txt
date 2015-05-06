@@ -3,19 +3,27 @@ Tags: users, recent, new, buddypress
 Contributors: Ipstenu
 Requires at least: 3.7
 Tested up to: 4.2
-Stable Tag: 3.3
-Donate link: https://store.halfelf.org/donate//
+Stable Tag: 3.4
+Donate link: https://store.halfelf.org/donate/
 
-Add a sortable column to the users list on Single Site WordPress to show registration date.
+Add a sortable column to the users list to show registration date.
 
 == Description ==
 
-This plugin adds a new, sortable, column to the users lists, which shows the date they registered.  This works just like it does on WordPress MultiSite, only for Single Site!
+This plugin adds a new, sortable, column to the users lists, which shows the date and time they registered.
+
+Primarily useful for single site (which doesn't show this at all), on Multisite Networks it adds the user's registration info for all individual sites.
 
 * [Donate](https://store.halfelf.org/donate/)
 * [Plugin Site](http://halfelf.org/plugins/recently-registered/)
 
 == Changelog ==
+
+= 3.4 =
+* 05 May 2015, by Ipstenu
+* Now works for Multisite so you can see the registrations per-site
+* Changed formatting to match Multisite's display
+* Network only if on Multisite (I think only the super-admins should decide this one)
 
 = 3.3 =
 * 19 December 2014, by Ipstenu
@@ -31,7 +39,7 @@ This plugin adds a new, sortable, column to the users lists, which shows the dat
 
 = 3.1 =
 * 17 Jan, 2013 by Ipstenu
-* Added in time to display (per request of <a href="http://wordpress.org/support/topic/show-timestamp">razorfrog</a>) 
+* Added in time to display (per request of <a href="http://wordpress.org/support/topic/show-timestamp">razorfrog</a>)
 
 = 3.0 =
 * 16 Jan, 2013 by Ipstenu
@@ -103,7 +111,11 @@ Not anymore.  This ONLY works on WordPress 3.1 and up.
 
 = Does this work on MultiSite? =
 
-No, and you don't need it! This is built in to Multisite.
+Yes it does. When Network Activated, it adds a column on each sub-site's user list to show registration date.
+
+= Why doesn't it show registration time on Multisite? =
+
+Because Multisite doesn't show that by default. If you set the request mode from list to excerpt, it'll show the time. It's a bit of a complicated way around it, but [this stackexchange thread explains it in detail](http://wordpress.stackexchange.com/questions/34956/set-default-listing-view-in-admin).
 
 = Does this work on BuddyPress? =
 
@@ -111,11 +123,11 @@ Yes!
 
 = Why doesn't this check for Stop Forum Spam anymore? =
 
-Overlap.  After a lot of testing, I determiend that [Ban Hammer](http://wordpress.org/extend/plugins/ban-hammer/) does this better and cleaner.  So if you need that sort of thing, use the right tool.
+Overlap.  After a lot of testing, I determined that [Ban Hammer](http://wordpress.org/plugins/ban-hammer/) does this better and cleaner.  So if you need that sort of thing, use the right tool.
 
 = Why did you remove the separate page? =
 
-Becuase it was redundant.  If you can sort it all on one page, why not do that?
+Because it was redundant.  If you can sort it all on one page, why not do that?
 
 == Screenshots ==
 
