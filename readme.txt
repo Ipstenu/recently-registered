@@ -1,9 +1,9 @@
 === Recently Registered ===
 Tags: users, recent, new, buddypress
 Contributors: Ipstenu
-Requires at least: 3.7
+Requires at least: 4.0
 Tested up to: 4.3
-Stable Tag: 3.4.1
+Stable Tag: 3.4.2
 Donate link: https://store.halfelf.org/donate/
 
 Add a sortable column to the users list to show registration date.
@@ -18,6 +18,10 @@ Primarily useful for single site (which doesn't show this at all), on Multisite 
 * [Plugin Site](http://halfelf.org/plugins/recently-registered/)
 
 == Changelog ==
+
+= 3.4.2 = 
+* 16 September 2015, by Ipstenu
+* Fixing errant `.=` from renaming functions. (hattip sintro)
 
 = 3.4.1 =
 * 05 May 2015, by Ipstenu
@@ -109,9 +113,9 @@ No special instructions.
 
 Because some other plugins are _doing_it_wrong(). When they created their column, they forgot to have the filter return the previous content, if it's not their column, so it's removing it. Since my plugin's doing it right, I gave it a higher priority to stop that from happening in most cases.
 
-= Will this work on older versions of WordPress? =
+= Can I change the date formatting? =
 
-Not anymore.  This ONLY works on WordPress 3.1 and up.
+Not at this time. The code is hardcoded because so is WordPress and I wanted to keep it matching as much as possible. That means until WP changes how it formats that column, I'm not changing the plugin.
 
 = Does this work on MultiSite? =
 

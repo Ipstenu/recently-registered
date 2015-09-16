@@ -3,7 +3,7 @@
 Plugin Name: Recently Registered
 Plugin URI: http://halfelf.org/plugins/recently-registered/
 Description: Add a sortable column to the users list to show registration date.
-Version: 3.4.1
+Version: 3.4.2
 Author: Mika Epstein
 Author URI: http://www.ipstenu.org/
 Text Domain: recently-registered
@@ -94,8 +94,8 @@ class RRHE {
 		        $formated_date = __( 'Y/m/d g:i:s a' );
 	        }
 
-	        $registered = strtotime(get_date_from_gmt($user->user_registered));
-	        $registerdate .= '<span>'. date_i18n( $formated_date, $registered ) .'</span>' ;
+	        $registered   = strtotime(get_date_from_gmt($user->user_registered));
+	        $registerdate = '<span>'. date_i18n( $formated_date, $registered ) .'</span>' ;
 
 			return $registerdate;
 		}
