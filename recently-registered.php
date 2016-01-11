@@ -3,7 +3,7 @@
 Plugin Name: Recently Registered
 Plugin URI: http://halfelf.org/plugins/recently-registered/
 Description: Add a sortable column to the users list to show registration date.
-Version: 3.4.2
+Version: 3.4.3
 Author: Mika Epstein
 Author URI: http://www.ipstenu.org/
 Text Domain: recently-registered
@@ -72,10 +72,15 @@ class RRHE {
 	}
 
 	/**
-	 * Generates column data based on when the user registered
+	 * Handles the registered date column output.
+	 * 
+	 * This uses the same code as column_registered, which is why
+	 * the date isn't filterable.
 	 *
 	 * @since 2.0
 	 * @access public
+	 *
+	 * @global string $mode
 	 */
 
 	public static function users_custom_column( $value, $column_name, $user_id ) {
@@ -138,7 +143,7 @@ class RRHE {
 	 * @since 3.4
 	 * @access public
 	 */
-	function load_this_textdomain() {
+	public function load_this_textdomain() {
 	    load_plugin_textdomain( 'recently-registered' );
 	}
 
@@ -148,7 +153,7 @@ class RRHE {
 	 * @since 2.x
 	 * @access public
 	 */
-	function donate_link($links, $file) {
+	public function donate_link($links, $file) {
 		if ($file == plugin_basename(__FILE__)) {
 			$donate_link = '<a href="https://store.halfelf.org/donate/">Donate</a>';
 			$links[] = $donate_link;
