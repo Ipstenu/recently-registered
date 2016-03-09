@@ -5,11 +5,11 @@ Plugin URI: http://halfelf.org/plugins/recently-registered/
 Description: Add a sortable column to the users list to show registration date.
 Version: 3.4.3
 Author: Mika Epstein
-Author URI: http://www.ipstenu.org/
+Author URI: http://halfelf.org/
 Text Domain: recently-registered
 Network: true
 
-Copyright 2009-2015 Mika Epstein (email: ipstenu@halfelf.org)
+Copyright 2009-2016 Mika Epstein (email: ipstenu@halfelf.org)
 
 This file is part of Recently Registered, a plugin for WordPress.
 
