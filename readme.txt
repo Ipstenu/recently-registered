@@ -2,7 +2,7 @@
 Tags: users, recent, new, buddypress, multisite
 Contributors: Ipstenu
 Requires at least: 4.0
-Tested up to: 4.7
+Tested up to: 4.8
 Stable Tag: 3.4.3
 Donate link: https://store.halfelf.org/donate/
 
