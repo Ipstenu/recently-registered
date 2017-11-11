@@ -2,9 +2,9 @@
 Tags: users, recent, new, buddypress, multisite
 Contributors: Ipstenu
 Requires at least: 4.0
-Tested up to: 4.8
+Tested up to: 4.9
 Stable Tag: 3.4.3
-Donate link: https://store.halfelf.org/donate/
+Donate link: https://ko-fi.com/A236CENl/
 
 Add a sortable column to the users list to show registration date.
 
@@ -14,7 +14,7 @@ This plugin adds a new, sortable, column to the users lists, which shows the dat
 
 Primarily useful for single site (which doesn't show this at all), on Multisite Networks it adds the user's registration info for all individual sites.
 
-* [Donate](https://store.halfelf.org/donate/)
+* [Donate](https://ko-fi.com/A236CENl/)
 * [Plugin Site](http://halfelf.org/plugins/recently-registered/)
 
 == Installation ==

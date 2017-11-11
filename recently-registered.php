@@ -155,7 +155,7 @@ class RRHE {
 	 */
 	public function donate_link($links, $file) {
 		if ($file == plugin_basename(__FILE__)) {
-			$donate_link = '<a href="https://store.halfelf.org/donate/">Donate</a>';
+			$donate_link = '<a href="https://ko-fi.com/A236CENl/">Donate</a>';
 			$links[] = $donate_link;
 		}
 		return $links;
