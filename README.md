@@ -11,4 +11,4 @@ This is the development repository for the Recently Registered plugin.
 
 * [Plugin Site](http://halfelf.org/plugins/recently-registered/)
 * [Basic Support](http://wordpress.org/support/plugin/recently-registered/)
-* [Donate](https://ko-fi.com/A236CENl/)
+* [Donate](https://ko-fi.com/A236CEN/)

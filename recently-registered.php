@@ -37,9 +37,9 @@ class RRHE {
 	 * @access public
 	 */
 
-    public function __construct() {
-        add_action( 'init', array( &$this, 'init' ) );
-    }
+	public function __construct() {
+		add_action( 'init', array( &$this, 'init' ) );
+	}
 
 
 	/**
@@ -49,7 +49,7 @@ class RRHE {
 	 * @access public
 	 */
 
-    public function init() {
+	public function init() {
 		add_filter( 'manage_users_columns', array( $this,'users_columns') );
 		add_action( 'manage_users_custom_column',  array( $this ,'users_custom_column'), 10, 3);
 		add_filter( 'manage_users_sortable_columns', array( $this ,'users_sortable_columns') );
@@ -88,19 +88,19 @@ class RRHE {
 		global $mode;
 		$mode = empty( $_REQUEST['mode'] ) ? 'list' : $_REQUEST['mode'];
 
-        if ( 'registerdate' != $column_name ) {
-           return $value;
-        } else {
-	        $user = get_userdata( $user_id );
+		if ( 'registerdate' != $column_name ) {
+			return $value;
+		} else {
+			$user = get_userdata( $user_id );
 
-	        if ( is_multisite() && ( 'list' == $mode ) ) {
-	        	$formated_date = __( 'Y/m/d' );
-	        } else {
-		        $formated_date = __( 'Y/m/d g:i:s a' );
-	        }
+			if ( is_multisite() && ( 'list' == $mode ) ) {
+				$formated_date = __( 'Y/m/d' );
+			} else {
+				$formated_date = __( 'Y/m/d g:i:s a' );
+			}
 
-	        $registered   = strtotime(get_date_from_gmt($user->user_registered));
-	        $registerdate = '<span>'. date_i18n( $formated_date, $registered ) .'</span>' ;
+			$registered   = strtotime(get_date_from_gmt($user->user_registered));
+			$registerdate = '<span>'. date_i18n( $formated_date, $registered ) .'</span>' ;
 
 			return $registerdate;
 		}
@@ -114,11 +114,11 @@ class RRHE {
 	 */
 
 	public static function users_sortable_columns($columns) {
-          $custom = array(
-		  // meta column id => sortby value used in query
-          'registerdate'    => 'registered',
-          );
-      return wp_parse_args($custom, $columns);
+		$custom = array(
+			// meta column id => sortby value used in query
+			'registerdate'    => 'registered',
+		);
+		return wp_parse_args($custom, $columns);
 	}
 
 	/**
@@ -128,13 +128,13 @@ class RRHE {
 	 * @access public
 	 */
 	public static function users_orderby_column( $vars ) {
-        if ( isset( $vars['orderby'] ) && 'registerdate' == $vars['orderby'] ) {
-                $vars = array_merge( $vars, array(
-                        'meta_key' => 'registerdate',
-                        'orderby' => 'meta_value'
-                ) );
-        }
-        return $vars;
+		if ( isset( $vars['orderby'] ) && 'registerdate' == $vars['orderby'] ) {
+			$vars = array_merge( $vars, array(
+				'meta_key' => 'registerdate',
+				'orderby'  => 'meta_value'
+			) );
+		}
+		return $vars;
 	}
 
 	/**
@@ -144,7 +144,7 @@ class RRHE {
 	 * @access public
 	 */
 	public function load_this_textdomain() {
-	    load_plugin_textdomain( 'recently-registered' );
+		load_plugin_textdomain( 'recently-registered' );
 	}
 
 	/**
@@ -155,7 +155,7 @@ class RRHE {
 	 */
 	public function donate_link($links, $file) {
 		if ($file == plugin_basename(__FILE__)) {
-			$donate_link = '<a href="https://ko-fi.com/A236CENl/">Donate</a>';
+			$donate_link = '<a href="https://ko-fi.com/A236CEN/">Donate</a>';
 			$links[] = $donate_link;
 		}
 		return $links;

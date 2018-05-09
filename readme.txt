@@ -4,7 +4,7 @@ Contributors: Ipstenu
 Requires at least: 4.0
 Tested up to: 4.9
 Stable Tag: 3.4.3
-Donate link: https://ko-fi.com/A236CENl/
+Donate link: https://ko-fi.com/A236CEN/
 
 Add a sortable column to the users list to show registration date.
 
@@ -14,8 +14,12 @@ This plugin adds a new, sortable, column to the users lists, which shows the dat
 
 Primarily useful for single site (which doesn't show this at all), on Multisite Networks it adds the user's registration info for all individual sites.
 
-* [Donate](https://ko-fi.com/A236CENl/)
+* [Donate](https://ko-fi.com/A236CEN/)
 * [Plugin Site](http://halfelf.org/plugins/recently-registered/)
+
+=== Privacy Notes ===
+
+This plugin does not track any additional data other than what WordPress natively collects upon registration. It just makes the data visble.
 
 == Installation ==
 
