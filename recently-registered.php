@@ -94,9 +94,9 @@ class RRHE {
 			$user = get_userdata( $user_id );
 
 			if ( is_multisite() && ( 'list' == $mode ) ) {
-				$formated_date = __( 'Y/m/d' );
+				$formated_date = __( 'Y/m/d', 'recently-registered' );
 			} else {
-				$formated_date = __( 'Y/m/d g:i:s a' );
+				$formated_date = __( 'Y/m/d g:i:s a', 'recently-registered' );
 			}
 
 			$registered   = strtotime(get_date_from_gmt($user->user_registered));
