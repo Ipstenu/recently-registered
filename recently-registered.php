@@ -3,13 +3,13 @@
 Plugin Name: Recently Registered
 Plugin URI: http://halfelf.org/plugins/recently-registered/
 Description: Add a sortable column to the users list to show registration date.
-Version: 3.4.3
+Version: 3.4.4
 Author: Mika Epstein
 Author URI: http://halfelf.org/
 Text Domain: recently-registered
 Network: true
 
-Copyright 2009-2016 Mika Epstein (email: ipstenu@halfelf.org)
+Copyright 2009-2021 Mika Epstein (email: ipstenu@halfelf.org)
 
 This file is part of Recently Registered, a plugin for WordPress.
 
@@ -50,12 +50,12 @@ class RRHE {
 	 */
 
 	public function init() {
-		add_filter( 'manage_users_columns', array( $this,'users_columns') );
-		add_action( 'manage_users_custom_column',  array( $this ,'users_custom_column'), 10, 3);
-		add_filter( 'manage_users_sortable_columns', array( $this ,'users_sortable_columns') );
-		add_filter( 'request', array( $this ,'users_orderby_column') );
-		add_action( 'plugins_loaded', array( $this ,'load_this_textdomain') );
-		add_filter( 'plugin_row_meta', array( $this ,'donate_link'), 10, 2 );
+		add_filter( 'manage_users_columns', array( $this, 'users_columns' ) );
+		add_action( 'manage_users_custom_column', array( $this, 'users_custom_column' ), 10, 3 );
+		add_filter( 'manage_users_sortable_columns', array( $this, 'users_sortable_columns' ) );
+		add_filter( 'request', array( $this, 'users_orderby_column' ) );
+		add_action( 'plugins_loaded', array( $this, 'load_this_textdomain' ) );
+		add_filter( 'plugin_row_meta', array( $this, 'donate_link' ), 10, 2 );
 
 	}
 
@@ -66,14 +66,14 @@ class RRHE {
 	 * @access public
 	 */
 
-	public static function users_columns($columns) {
-		$columns['registerdate'] = _x('Registered', 'user', 'recently-registered');
+	public static function users_columns( $columns ) {
+		$columns['registerdate'] = _x( 'Registered', 'user', 'recently-registered' );
 		return $columns;
 	}
 
 	/**
 	 * Handles the registered date column output.
-	 * 
+	 *
 	 * This uses the same code as column_registered, which is why
 	 * the date isn't filterable.
 	 *
@@ -86,21 +86,22 @@ class RRHE {
 	public static function users_custom_column( $value, $column_name, $user_id ) {
 
 		global $mode;
-		$mode = empty( $_REQUEST['mode'] ) ? 'list' : $_REQUEST['mode'];
+
+		$list_mode = empty( $_REQUEST['mode'] ) ? 'list' : sanitize_text_field( $_REQUEST['mode'] );
 
 		if ( 'registerdate' != $column_name ) {
 			return $value;
 		} else {
 			$user = get_userdata( $user_id );
 
-			if ( is_multisite() && ( 'list' == $mode ) ) {
+			if ( is_multisite() && ( 'list' == $list_mode ) ) {
 				$formated_date = __( 'Y/m/d', 'recently-registered' );
 			} else {
 				$formated_date = __( 'Y/m/d g:i:s a', 'recently-registered' );
 			}
 
-			$registered   = strtotime(get_date_from_gmt($user->user_registered));
-			$registerdate = '<span>'. date_i18n( $formated_date, $registered ) .'</span>' ;
+			$registered   = strtotime( get_date_from_gmt( $user->user_registered ) );
+			$registerdate = '<span>' . date_i18n( $formated_date, $registered ) . '</span>';
 
 			return $registerdate;
 		}
@@ -113,12 +114,12 @@ class RRHE {
 	 * @access public
 	 */
 
-	public static function users_sortable_columns($columns) {
+	public static function users_sortable_columns( $columns ) {
 		$custom = array(
 			// meta column id => sortby value used in query
-			'registerdate'    => 'registered',
+			'registerdate' => 'registered',
 		);
-		return wp_parse_args($custom, $columns);
+		return wp_parse_args( $custom, $columns );
 	}
 
 	/**
@@ -129,10 +130,13 @@ class RRHE {
 	 */
 	public static function users_orderby_column( $vars ) {
 		if ( isset( $vars['orderby'] ) && 'registerdate' == $vars['orderby'] ) {
-			$vars = array_merge( $vars, array(
+
+			$new_vars = array(
 				'meta_key' => 'registerdate',
-				'orderby'  => 'meta_value'
-			) );
+				'orderby'  => 'meta_value',
+			);
+
+			$vars = array_merge( $vars, $new_vars );
 		}
 		return $vars;
 	}
@@ -153,9 +157,9 @@ class RRHE {
 	 * @since 2.x
 	 * @access public
 	 */
-	public function donate_link($links, $file) {
-		if ($file == plugin_basename(__FILE__)) {
-			$donate_link = '<a href="https://ko-fi.com/A236CEN/">Donate</a>';
+	public function donate_link( $links, $file ) {
+		if ( plugin_basename( __FILE__ ) == $file ) {
+			$donate_link = '<a href="https://ko-fi.com/A236CEN/">' . __( 'Donate', 'recently-registered' ) . '</a>';
 			$links[] = $donate_link;
 		}
 		return $links;

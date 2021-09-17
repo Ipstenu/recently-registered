@@ -3,7 +3,7 @@ Tags: users, recent, new, buddypress, multisite
 Contributors: Ipstenu
 Requires at least: 4.0
 Tested up to: 5.8
-Stable Tag: 3.4.3
+Stable Tag: 3.4.4
 Donate link: https://ko-fi.com/A236CEN/
 
 Add a sortable column to the users list to show registration date.
@@ -61,11 +61,16 @@ Because it was redundant.  If you can sort it all on one page, why not do that?
 
 == Changelog ==
 
-= 3.4.3 = 
+= 3.4.4 =
+* 17 September 2021 by Ipstenu
+* PHPCS cleanup
+* Add text domains to dates (credit Alex Lion)
+
+= 3.4.3 =
 * 11 January 2016, by Ipstenu
 * Public functions, what's your function? (This is not a functional change, just a cleanup)
 
-= 3.4.2 = 
+= 3.4.2 =
 * 16 September 2015, by Ipstenu
 * Fixing errant `.=` from renaming functions. (hattip sintro)
 
