@@ -3,13 +3,13 @@
 Plugin Name: Recently Registered
 Plugin URI: http://halfelf.org/plugins/recently-registered/
 Description: Add a sortable column to the users list to show registration date.
-Version: 3.4.4
+Version: 3.5
 Author: Mika Epstein
 Author URI: http://halfelf.org/
 Text Domain: recently-registered
 Network: true
 
-Copyright 2009-2021 Mika Epstein (email: ipstenu@halfelf.org)
+Copyright 2009-2022 Mika Epstein (email: ipstenu@halfelf.org)
 
 This file is part of Recently Registered, a plugin for WordPress.
 
@@ -38,7 +38,7 @@ class RRHE {
 	 */
 
 	public function __construct() {
-		add_action( 'init', array( &$this, 'init' ) );
+		add_action( 'admin_init', array( &$this, 'admin_init' ) );
 	}
 
 
@@ -49,14 +49,15 @@ class RRHE {
 	 * @access public
 	 */
 
-	public function init() {
-		add_filter( 'manage_users_columns', array( $this, 'users_columns' ) );
-		add_action( 'manage_users_custom_column', array( $this, 'users_custom_column' ), 10, 3 );
-		add_filter( 'manage_users_sortable_columns', array( $this, 'users_sortable_columns' ) );
-		add_filter( 'request', array( $this, 'users_orderby_column' ) );
-		add_action( 'plugins_loaded', array( $this, 'load_this_textdomain' ) );
-		add_filter( 'plugin_row_meta', array( $this, 'donate_link' ), 10, 2 );
-
+	public function admin_init() {
+		if ( is_admin() ) {
+			add_filter( 'manage_users_columns', array( $this, 'users_columns' ) );
+			add_action( 'manage_users_custom_column', array( $this, 'users_custom_column' ), 10, 3 );
+			add_filter( 'manage_users_sortable_columns', array( $this, 'users_sortable_columns' ) );
+			add_filter( 'request', array( $this, 'users_orderby_column' ) );
+			add_action( 'plugins_loaded', array( $this, 'load_this_textdomain' ) );
+			add_filter( 'plugin_row_meta', array( $this, 'donate_link' ), 10, 2 );	
+		}
 	}
 
 	/**
@@ -89,19 +90,25 @@ class RRHE {
 
 		$list_mode = empty( $_REQUEST['mode'] ) ? 'list' : sanitize_text_field( $_REQUEST['mode'] );
 
-		if ( 'registerdate' != $column_name ) {
+		if ( 'registerdate' !== $column_name ) {
 			return $value;
 		} else {
 			$user = get_userdata( $user_id );
 
-			if ( is_multisite() && ( 'list' == $list_mode ) ) {
+			if ( is_multisite() && ( 'list' === $list_mode ) ) {
 				$formated_date = __( 'Y/m/d', 'recently-registered' );
 			} else {
 				$formated_date = __( 'Y/m/d g:i:s a', 'recently-registered' );
 			}
 
-			$registered   = strtotime( get_date_from_gmt( $user->user_registered ) );
-			$registerdate = '<span>' . date_i18n( $formated_date, $registered ) . '</span>';
+			$registered = strtotime( get_date_from_gmt( $user->user_registered ) );
+
+			// If the date is negative or in the future, then something's wrong, so we'll be unknown.
+			if ( ( $registered <= 0 ) || ( time() <= $registered ) ) {
+				$registerdate = '<span class="recently-registered invalid-date">' . __( 'Unknown', 'recently-registered' ) . '</span>';
+			} else {
+				$registerdate = '<span class="recently-registered valid-date">' . date_i18n( $formated_date, $registered ) . '</span>';
+			}
 
 			return $registerdate;
 		}

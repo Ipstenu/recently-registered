@@ -3,7 +3,7 @@ Tags: users, recent, new, buddypress, multisite
 Contributors: Ipstenu
 Requires at least: 4.0
 Tested up to: 6.0
-Stable Tag: 3.4.4
+Stable Tag: 3.5
 Donate link: https://ko-fi.com/A236CEN/
 
 Add a sortable column to the users list to show registration date.
@@ -33,7 +33,7 @@ Because some other plugins are `_doing_it_wrong()`. When they created their colu
 
 = Can I change the date formatting? =
 
-Not at this time. The code is hardcoded because so is WordPress and I wanted to keep it matching as much as possible. That means until WP changes how it formats that column, I'm not changing the plugin.
+Not at this time. The code is hardcoded because so is WordPress and I wanted to keep it matching as much as possible. That means until WP changes how it formats that column, I'm not changing the plugin. It's translatable, which will allow for different languages to format as needed, but that's it.
 
 = Does this work on MultiSite? =
 
@@ -42,6 +42,10 @@ Yes it does. When Network Activated, it adds a column on each sub-site's user li
 = Why doesn't it show registration time on Multisite? =
 
 Because Multisite doesn't show that by default. If you set the request mode from list to excerpt, it'll show the time. It's a bit of a complicated way around it, but [this stackexchange thread explains it in detail](http://wordpress.stackexchange.com/questions/34956/set-default-listing-view-in-admin).
+
+= Why does it show the registration date/time as 'Unknown'? =
+
+That means the values in the database are set to pre 1970 or post 'now' (whenever now is). Basically it had an invalid date.
 
 = Does this work on BuddyPress? =
 
@@ -61,10 +65,15 @@ Because it was redundant.  If you can sort it all on one page, why not do that?
 
 == Changelog ==
 
+= 3.5 =
+* 11 May 2022 by Ipstenu
+* Change init to admin_init and restrict calls to wp-admin only (props @dominicp)
+* Date/Time logic 
+
 = 3.4.4 =
 * 17 September 2021 by Ipstenu
 * PHPCS cleanup
-* Add text domains to dates (credit Alex Lion)
+* Add text domains to dates (props @ Alex Lion)
 
 = 3.4.3 =
 * 11 January 2016, by Ipstenu
@@ -72,7 +81,7 @@ Because it was redundant.  If you can sort it all on one page, why not do that?
 
 = 3.4.2 =
 * 16 September 2015, by Ipstenu
-* Fixing errant `.=` from renaming functions. (hattip sintro)
+* Fixing errant `.=` from renaming functions. (props @sintro)
 
 = 3.4.1 =
 * 05 May 2015, by Ipstenu
