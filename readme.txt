@@ -2,7 +2,7 @@
 Tags: users, recent, new, buddypress, multisite
 Contributors: Ipstenu
 Requires at least: 4.0
-Tested up to: 6.0
+Tested up to: 6.1
 Stable Tag: 3.5
 Donate link: https://ko-fi.com/A236CEN/
 
